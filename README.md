@@ -22,7 +22,7 @@ yarn install @lourd/react-google-api
 
 ### Browser
 
-Available as a simple [<script> through unpkg.com][unpkg]. The package will be available as the global variable `ReactGoogleApi`.
+Available as a simple [`<script>` through unpkg.com][unpkg]. The package will be available as the global variable `ReactGoogleApi`.
 
 ## Reference
 
