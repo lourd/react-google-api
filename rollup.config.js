@@ -20,18 +20,13 @@ const config = {
     babel({
       exclude: 'node_modules/**',
     }),
+    replace({
+      'process.env.NODE_ENV': JSON.stringify(BUILD_ENV),
+    }),
     commonjs({
       include: /node_modules/,
     }),
   ],
-}
-
-if (BUILD_ENV) {
-  config.plugins.push(
-    replace({
-      'process.env.NODE_ENV': JSON.stringify(BUILD_ENV),
-    }),
-  )
 }
 
 if (BUILD_ENV === 'production') {

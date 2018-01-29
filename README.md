@@ -6,6 +6,7 @@
 [travis]: https://travis-ci.org/lourd/react-google-api
 [client docs]: https://developers.google.com/api-client-library/javascript/
 [sheets module]: https://github.com/lourd/react-google-sheet
+[unpkg]: https://unpkg.com/@lourd/react-google-api
 
 Integrate your React application with one of Google's many APIs with the `GoogleApi` component.
 
@@ -18,6 +19,10 @@ See [`@lourd/react-google-sheet`][sheets module] for an example of using the com
 ```sh
 yarn install @lourd/react-google-api
 ```
+
+### Browser
+
+Available as a simple [<script> through unpkg.com][unpkg]. The package will be available as the global variable `ReactGoogleApi`.
 
 ## Reference
 

@@ -1,4 +1,10 @@
-import React from 'react';
+(function (global, factory) {
+	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('react')) :
+	typeof define === 'function' && define.amd ? define(['exports', 'react'], factory) :
+	(factory((global.ReactGoogleApi = {}),global.React));
+}(this, (function (exports,React) { 'use strict';
+
+React = React && React.hasOwnProperty('default') ? React['default'] : React;
 
 function createCommonjsModule(fn, module) {
 	return module = { exports: {} }, fn(module, module.exports), module.exports;
@@ -60,7 +66,7 @@ var emptyFunction_1 = emptyFunction;
 
 var validateFormat = function validateFormat(format) {};
 
-if (process.env.NODE_ENV !== 'production') {
+{
   validateFormat = function validateFormat(format) {
     if (format === undefined) {
       throw new Error('invariant requires an error message argument');
@@ -100,7 +106,7 @@ var invariant_1 = invariant;
 
 var warning = emptyFunction_1;
 
-if (process.env.NODE_ENV !== 'production') {
+{
   var printWarning = function printWarning(format) {
     for (var _len = arguments.length, args = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
       args[_key - 1] = arguments[_key];
@@ -243,10 +249,10 @@ var ReactPropTypesSecret = 'SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED';
 
 var ReactPropTypesSecret_1 = ReactPropTypesSecret;
 
-if (process.env.NODE_ENV !== 'production') {
-  var invariant$2 = invariant_1;
+{
+  var invariant$1 = invariant_1;
   var warning$1 = warning_1;
-  var ReactPropTypesSecret$2 = ReactPropTypesSecret_1;
+  var ReactPropTypesSecret$1 = ReactPropTypesSecret_1;
   var loggedTypeFailures = {};
 }
 
@@ -262,7 +268,7 @@ if (process.env.NODE_ENV !== 'production') {
  * @private
  */
 function checkPropTypes(typeSpecs, values, location, componentName, getStack) {
-  if (process.env.NODE_ENV !== 'production') {
+  {
     for (var typeSpecName in typeSpecs) {
       if (typeSpecs.hasOwnProperty(typeSpecName)) {
         var error;
@@ -272,8 +278,8 @@ function checkPropTypes(typeSpecs, values, location, componentName, getStack) {
         try {
           // This is intentionally an invariant that gets caught. It's the same
           // behavior as without this statement except with a better message.
-          invariant$2(typeof typeSpecs[typeSpecName] === 'function', '%s: %s type `%s` is invalid; it must be a function, usually from ' + 'the `prop-types` package, but received `%s`.', componentName || 'React class', location, typeSpecName, typeof typeSpecs[typeSpecName]);
-          error = typeSpecs[typeSpecName](values, typeSpecName, componentName, location, null, ReactPropTypesSecret$2);
+          invariant$1(typeof typeSpecs[typeSpecName] === 'function', '%s: %s type `%s` is invalid; it must be a function, usually from ' + 'the `prop-types` package, but received `%s`.', componentName || 'React class', location, typeSpecName, typeof typeSpecs[typeSpecName]);
+          error = typeSpecs[typeSpecName](values, typeSpecName, componentName, location, null, ReactPropTypesSecret$1);
         } catch (ex) {
           error = ex;
         }
@@ -425,7 +431,7 @@ var factoryWithTypeCheckers = function(isValidElement, throwOnDirectAccess) {
   PropTypeError.prototype = Error.prototype;
 
   function createChainableTypeChecker(validate) {
-    if (process.env.NODE_ENV !== 'production') {
+    {
       var manualPropTypeCallCache = {};
       var manualPropTypeWarningCount = 0;
     }
@@ -442,7 +448,7 @@ var factoryWithTypeCheckers = function(isValidElement, throwOnDirectAccess) {
             'Use `PropTypes.checkPropTypes()` to call them. ' +
             'Read more at http://fb.me/use-check-prop-types'
           );
-        } else if (process.env.NODE_ENV !== 'production' && typeof console !== 'undefined') {
+        } else if ("development" !== 'production' && typeof console !== 'undefined') {
           // Old behavior for people using React.PropTypes
           var cacheKey = componentName + ':' + propName;
           if (
@@ -552,7 +558,7 @@ var factoryWithTypeCheckers = function(isValidElement, throwOnDirectAccess) {
 
   function createEnumTypeChecker(expectedValues) {
     if (!Array.isArray(expectedValues)) {
-      process.env.NODE_ENV !== 'production' ? warning_1(false, 'Invalid argument supplied to oneOf, expected an instance of array.') : void 0;
+      warning_1(false, 'Invalid argument supplied to oneOf, expected an instance of array.');
       return emptyFunction_1.thatReturnsNull;
     }
 
@@ -595,7 +601,7 @@ var factoryWithTypeCheckers = function(isValidElement, throwOnDirectAccess) {
 
   function createUnionTypeChecker(arrayOfTypeCheckers) {
     if (!Array.isArray(arrayOfTypeCheckers)) {
-      process.env.NODE_ENV !== 'production' ? warning_1(false, 'Invalid argument supplied to oneOfType, expected an instance of array.') : void 0;
+      warning_1(false, 'Invalid argument supplied to oneOfType, expected an instance of array.');
       return emptyFunction_1.thatReturnsNull;
     }
 
@@ -820,52 +826,6 @@ var factoryWithTypeCheckers = function(isValidElement, throwOnDirectAccess) {
   return ReactPropTypes;
 };
 
-var factoryWithThrowingShims = function() {
-  function shim(props, propName, componentName, location, propFullName, secret) {
-    if (secret === ReactPropTypesSecret_1) {
-      // It is still safe when called from React.
-      return;
-    }
-    invariant_1(
-      false,
-      'Calling PropTypes validators directly is not supported by the `prop-types` package. ' +
-      'Use PropTypes.checkPropTypes() to call them. ' +
-      'Read more at http://fb.me/use-check-prop-types'
-    );
-  }
-  shim.isRequired = shim;
-  function getShim() {
-    return shim;
-  }
-  // Important!
-  // Keep this list in sync with production version in `./factoryWithTypeCheckers.js`.
-  var ReactPropTypes = {
-    array: shim,
-    bool: shim,
-    func: shim,
-    number: shim,
-    object: shim,
-    string: shim,
-    symbol: shim,
-
-    any: shim,
-    arrayOf: getShim,
-    element: shim,
-    instanceOf: getShim,
-    node: shim,
-    objectOf: getShim,
-    oneOf: getShim,
-    oneOfType: getShim,
-    shape: getShim,
-    exact: getShim
-  };
-
-  ReactPropTypes.checkPropTypes = emptyFunction_1;
-  ReactPropTypes.PropTypes = ReactPropTypes;
-
-  return ReactPropTypes;
-};
-
 var propTypes = createCommonjsModule(function (module) {
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
@@ -874,7 +834,7 @@ var propTypes = createCommonjsModule(function (module) {
  * LICENSE file in the root directory of this source tree.
  */
 
-if (process.env.NODE_ENV !== 'production') {
+{
   var REACT_ELEMENT_TYPE = (typeof Symbol === 'function' &&
     Symbol.for &&
     Symbol.for('react.element')) ||
@@ -890,10 +850,6 @@ if (process.env.NODE_ENV !== 'production') {
   // http://fb.me/prop-types-in-prod
   var throwOnDirectAccess = true;
   module.exports = factoryWithTypeCheckers(isValidElement, throwOnDirectAccess);
-} else {
-  // By explicitly using `prop-types` you are opting into new production behavior.
-  // http://fb.me/prop-types-in-prod
-  module.exports = factoryWithThrowingShims();
 }
 });
 
@@ -957,7 +913,7 @@ var emptyFunction_1$2 = emptyFunction$2;
 
 var validateFormat$1 = function validateFormat(format) {};
 
-if (process.env.NODE_ENV !== 'production') {
+{
   validateFormat$1 = function validateFormat(format) {
     if (format === undefined) {
       throw new Error('invariant requires an error message argument');
@@ -965,7 +921,7 @@ if (process.env.NODE_ENV !== 'production') {
   };
 }
 
-function invariant$3(condition, format, a, b, c, d, e, f) {
+function invariant$2(condition, format, a, b, c, d, e, f) {
   validateFormat$1(format);
 
   if (!condition) {
@@ -986,7 +942,7 @@ function invariant$3(condition, format, a, b, c, d, e, f) {
   }
 }
 
-var invariant_1$2 = invariant$3;
+var invariant_1$2 = invariant$2;
 
 /**
  * Similar to invariant but only logs a warning if the condition is not met.
@@ -997,7 +953,7 @@ var invariant_1$2 = invariant$3;
 
 var warning$2 = emptyFunction_1$2;
 
-if (process.env.NODE_ENV !== 'production') {
+{
   var printWarning$1 = function printWarning(format) {
     for (var _len = arguments.length, args = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
       args[_key - 1] = arguments[_key];
@@ -1136,11 +1092,11 @@ var objectAssign$2 = shouldUseNative$1() ? Object.assign : function (target, sou
  * LICENSE file in the root directory of this source tree.
  */
 
-var ReactPropTypesSecret$3 = 'SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED';
+var ReactPropTypesSecret$2 = 'SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED';
 
-var ReactPropTypesSecret_1$2 = ReactPropTypesSecret$3;
+var ReactPropTypesSecret_1$2 = ReactPropTypesSecret$2;
 
-if (process.env.NODE_ENV !== 'production') {
+{
   var invariant$1$1 = invariant_1$2;
   var warning$1$1 = warning_1$2;
   var ReactPropTypesSecret$1$1 = ReactPropTypesSecret_1$2;
@@ -1159,7 +1115,7 @@ if (process.env.NODE_ENV !== 'production') {
  * @private
  */
 function checkPropTypes$2(typeSpecs, values, location, componentName, getStack) {
-  if (process.env.NODE_ENV !== 'production') {
+  {
     for (var typeSpecName in typeSpecs) {
       if (typeSpecs.hasOwnProperty(typeSpecName)) {
         var error;
@@ -1322,7 +1278,7 @@ var factoryWithTypeCheckers$2 = function(isValidElement, throwOnDirectAccess) {
   PropTypeError.prototype = Error.prototype;
 
   function createChainableTypeChecker(validate) {
-    if (process.env.NODE_ENV !== 'production') {
+    {
       var manualPropTypeCallCache = {};
       var manualPropTypeWarningCount = 0;
     }
@@ -1339,7 +1295,7 @@ var factoryWithTypeCheckers$2 = function(isValidElement, throwOnDirectAccess) {
             'Use `PropTypes.checkPropTypes()` to call them. ' +
             'Read more at http://fb.me/use-check-prop-types'
           );
-        } else if (process.env.NODE_ENV !== 'production' && typeof console !== 'undefined') {
+        } else if ("development" !== 'production' && typeof console !== 'undefined') {
           // Old behavior for people using React.PropTypes
           var cacheKey = componentName + ':' + propName;
           if (
@@ -1449,7 +1405,7 @@ var factoryWithTypeCheckers$2 = function(isValidElement, throwOnDirectAccess) {
 
   function createEnumTypeChecker(expectedValues) {
     if (!Array.isArray(expectedValues)) {
-      process.env.NODE_ENV !== 'production' ? warning_1$2(false, 'Invalid argument supplied to oneOf, expected an instance of array.') : void 0;
+      warning_1$2(false, 'Invalid argument supplied to oneOf, expected an instance of array.');
       return emptyFunction_1$2.thatReturnsNull;
     }
 
@@ -1492,7 +1448,7 @@ var factoryWithTypeCheckers$2 = function(isValidElement, throwOnDirectAccess) {
 
   function createUnionTypeChecker(arrayOfTypeCheckers) {
     if (!Array.isArray(arrayOfTypeCheckers)) {
-      process.env.NODE_ENV !== 'production' ? warning_1$2(false, 'Invalid argument supplied to oneOfType, expected an instance of array.') : void 0;
+      warning_1$2(false, 'Invalid argument supplied to oneOfType, expected an instance of array.');
       return emptyFunction_1$2.thatReturnsNull;
     }
 
@@ -1717,52 +1673,6 @@ var factoryWithTypeCheckers$2 = function(isValidElement, throwOnDirectAccess) {
   return ReactPropTypes;
 };
 
-var factoryWithThrowingShims$2 = function() {
-  function shim(props, propName, componentName, location, propFullName, secret) {
-    if (secret === ReactPropTypesSecret_1$2) {
-      // It is still safe when called from React.
-      return;
-    }
-    invariant_1$2(
-      false,
-      'Calling PropTypes validators directly is not supported by the `prop-types` package. ' +
-      'Use PropTypes.checkPropTypes() to call them. ' +
-      'Read more at http://fb.me/use-check-prop-types'
-    );
-  }
-  shim.isRequired = shim;
-  function getShim() {
-    return shim;
-  }
-  // Important!
-  // Keep this list in sync with production version in `./factoryWithTypeCheckers.js`.
-  var ReactPropTypes = {
-    array: shim,
-    bool: shim,
-    func: shim,
-    number: shim,
-    object: shim,
-    string: shim,
-    symbol: shim,
-
-    any: shim,
-    arrayOf: getShim,
-    element: shim,
-    instanceOf: getShim,
-    node: shim,
-    objectOf: getShim,
-    oneOf: getShim,
-    oneOfType: getShim,
-    shape: getShim,
-    exact: getShim
-  };
-
-  ReactPropTypes.checkPropTypes = emptyFunction_1$2;
-  ReactPropTypes.PropTypes = ReactPropTypes;
-
-  return ReactPropTypes;
-};
-
 var propTypes$1 = createCommonjsModule$1(function (module) {
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
@@ -1771,7 +1681,7 @@ var propTypes$1 = createCommonjsModule$1(function (module) {
  * LICENSE file in the root directory of this source tree.
  */
 
-if (process.env.NODE_ENV !== 'production') {
+{
   var REACT_ELEMENT_TYPE = (typeof Symbol === 'function' &&
     Symbol.for &&
     Symbol.for('react.element')) ||
@@ -1787,10 +1697,6 @@ if (process.env.NODE_ENV !== 'production') {
   // http://fb.me/prop-types-in-prod
   var throwOnDirectAccess = true;
   module.exports = factoryWithTypeCheckers$2(isValidElement, throwOnDirectAccess);
-} else {
-  // By explicitly using `prop-types` you are opting into new production behavior.
-  // http://fb.me/prop-types-in-prod
-  module.exports = factoryWithThrowingShims$2();
 }
 });
 
@@ -1814,9 +1720,9 @@ if (process.env.NODE_ENV !== 'production') {
  * will remain to ensure logic does not differ in production.
  */
 
-var NODE_ENV = process.env.NODE_ENV;
+var NODE_ENV = "development";
 
-var invariant$3$1 = function(condition, format, a, b, c, d, e, f) {
+var invariant$3 = function(condition, format, a, b, c, d, e, f) {
   if (NODE_ENV !== 'production') {
     if (format === undefined) {
       throw new Error('invariant requires an error message argument');
@@ -1844,7 +1750,7 @@ var invariant$3$1 = function(condition, format, a, b, c, d, e, f) {
   }
 };
 
-var invariant_1$2$1 = invariant$3$1;
+var invariant_1$2$1 = invariant$3;
 
 /**
  * Copyright 2014-2015, Facebook, Inc.
@@ -1862,7 +1768,7 @@ var invariant_1$2$1 = invariant$3$1;
  * same logic and follow the same code paths.
  */
 
-var __DEV__ = process.env.NODE_ENV !== 'production';
+var __DEV__ = "development" !== 'production';
 
 var warning$2$1 = function() {};
 
@@ -2495,4 +2401,9 @@ GoogleApi.propTypes = {
   children: propTypes.oneOfType([propTypes.func, propTypes.node])
 };
 
-export { GoogleApi, GoogleApiConsumer };
+exports.GoogleApi = GoogleApi;
+exports.GoogleApiConsumer = GoogleApiConsumer;
+
+Object.defineProperty(exports, '__esModule', { value: true });
+
+})));

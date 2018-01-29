@@ -1,10 +1,4 @@
-(function (global, factory) {
-	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('react')) :
-	typeof define === 'function' && define.amd ? define(['exports', 'react'], factory) :
-	(factory((global.ReactGoogleApi = {}),global.React));
-}(this, (function (exports,React) { 'use strict';
-
-React = React && React.hasOwnProperty('default') ? React['default'] : React;
+import React from 'react';
 
 function createCommonjsModule(fn, module) {
 	return module = { exports: {} }, fn(module, module.exports), module.exports;
@@ -250,9 +244,9 @@ var ReactPropTypesSecret = 'SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED';
 var ReactPropTypesSecret_1 = ReactPropTypesSecret;
 
 {
-  var invariant$2 = invariant_1;
+  var invariant$1 = invariant_1;
   var warning$1 = warning_1;
-  var ReactPropTypesSecret$2 = ReactPropTypesSecret_1;
+  var ReactPropTypesSecret$1 = ReactPropTypesSecret_1;
   var loggedTypeFailures = {};
 }
 
@@ -278,8 +272,8 @@ function checkPropTypes(typeSpecs, values, location, componentName, getStack) {
         try {
           // This is intentionally an invariant that gets caught. It's the same
           // behavior as without this statement except with a better message.
-          invariant$2(typeof typeSpecs[typeSpecName] === 'function', '%s: %s type `%s` is invalid; it must be a function, usually from ' + 'the `prop-types` package, but received `%s`.', componentName || 'React class', location, typeSpecName, typeof typeSpecs[typeSpecName]);
-          error = typeSpecs[typeSpecName](values, typeSpecName, componentName, location, null, ReactPropTypesSecret$2);
+          invariant$1(typeof typeSpecs[typeSpecName] === 'function', '%s: %s type `%s` is invalid; it must be a function, usually from ' + 'the `prop-types` package, but received `%s`.', componentName || 'React class', location, typeSpecName, typeof typeSpecs[typeSpecName]);
+          error = typeSpecs[typeSpecName](values, typeSpecName, componentName, location, null, ReactPropTypesSecret$1);
         } catch (ex) {
           error = ex;
         }
@@ -921,7 +915,7 @@ var validateFormat$1 = function validateFormat(format) {};
   };
 }
 
-function invariant$3(condition, format, a, b, c, d, e, f) {
+function invariant$2(condition, format, a, b, c, d, e, f) {
   validateFormat$1(format);
 
   if (!condition) {
@@ -942,7 +936,7 @@ function invariant$3(condition, format, a, b, c, d, e, f) {
   }
 }
 
-var invariant_1$2 = invariant$3;
+var invariant_1$2 = invariant$2;
 
 /**
  * Similar to invariant but only logs a warning if the condition is not met.
@@ -1092,9 +1086,9 @@ var objectAssign$2 = shouldUseNative$1() ? Object.assign : function (target, sou
  * LICENSE file in the root directory of this source tree.
  */
 
-var ReactPropTypesSecret$3 = 'SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED';
+var ReactPropTypesSecret$2 = 'SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED';
 
-var ReactPropTypesSecret_1$2 = ReactPropTypesSecret$3;
+var ReactPropTypesSecret_1$2 = ReactPropTypesSecret$2;
 
 {
   var invariant$1$1 = invariant_1$2;
@@ -1722,7 +1716,7 @@ var propTypes$1 = createCommonjsModule$1(function (module) {
 
 var NODE_ENV = "development";
 
-var invariant$3$1 = function(condition, format, a, b, c, d, e, f) {
+var invariant$3 = function(condition, format, a, b, c, d, e, f) {
   if (NODE_ENV !== 'production') {
     if (format === undefined) {
       throw new Error('invariant requires an error message argument');
@@ -1750,7 +1744,7 @@ var invariant$3$1 = function(condition, format, a, b, c, d, e, f) {
   }
 };
 
-var invariant_1$2$1 = invariant$3$1;
+var invariant_1$2$1 = invariant$3;
 
 /**
  * Copyright 2014-2015, Facebook, Inc.
@@ -2401,9 +2395,4 @@ GoogleApi.propTypes = {
   children: propTypes.oneOfType([propTypes.func, propTypes.node])
 };
 
-exports.GoogleApi = GoogleApi;
-exports.GoogleApiConsumer = GoogleApiConsumer;
-
-Object.defineProperty(exports, '__esModule', { value: true });
-
-})));
+export { GoogleApi, GoogleApiConsumer };
