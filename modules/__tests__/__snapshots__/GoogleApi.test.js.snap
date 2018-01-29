@@ -1,0 +1,181 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`GoogleApi component Throws a render error when no children are given: no children render error 1`] = `[Invariant Violation: GoogleApiProvider(...): Nothing was returned from render. This usually means a return statement is missing. Or, to render nothing, return null.]`;
+
+exports[`GoogleApi component has initial values for the api state, including the bound authorize and
+  signout instance methods, and passes that state down through a context
+  provider and the children prop if it is a function 1`] = `
+Object {
+  "authorize": [Function],
+  "client": null,
+  "error": null,
+  "loading": true,
+  "signedIn": false,
+  "signout": [Function],
+}
+`;
+
+exports[`GoogleApi component setupApi catches errors from initializing the api client and sets it in state: client init error setState call 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "error": [Error: faiiiiiil],
+        "loading": false,
+      },
+    ],
+  ],
+}
+`;
+
+exports[`GoogleApi component setupApi catches errors from loading the api auth extension and sets it in state: auth load error setState call 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "error": [Error: faiiiiiil],
+        "loading": false,
+      },
+    ],
+  ],
+}
+`;
+
+exports[`GoogleApi component setupApi catches errors from loading the api library and sets it in state: library load error setState call 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "error": [Error: faiiiiiil],
+        "loading": false,
+      },
+    ],
+  ],
+}
+`;
+
+exports[`GoogleApi component setupApi loads the google api library, loads the client:auth2 extension, gets
+    the auth instance, updates the component state, and subscribes to changes
+    in the api client's internal auth state: client init call 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "apiKey": "apiKey",
+        "clientId": "id",
+        "discoveryDocs": Array [
+          "strings",
+        ],
+        "scope": "more strings,many strings",
+      },
+    ],
+  ],
+}
+`;
+
+exports[`GoogleApi component setupApi loads the google api library, loads the client:auth2 extension, gets
+    the auth instance, updates the component state, and subscribes to changes
+    in the api client's internal auth state: gapi.load call 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      "client:auth2",
+      Object {
+        "callback": [Function],
+        "onerror": [Function],
+      },
+    ],
+  ],
+}
+`;
+
+exports[`GoogleApi component setupApi loads the google api library, loads the client:auth2 extension, gets
+    the auth instance, updates the component state, and subscribes to changes
+    in the api client's internal auth state: loadScript call 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      "https://apis.google.com/js/api.js",
+    ],
+  ],
+}
+`;
+
+exports[`GoogleApi component setupApi loads the google api library, loads the client:auth2 extension, gets
+    the auth instance, updates the component state, and subscribes to changes
+    in the api client's internal auth state: setState call 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "client": Object {
+          "init": [MockFunction] {
+            "calls": Array [
+              Array [
+                Object {
+                  "apiKey": "apiKey",
+                  "clientId": "id",
+                  "discoveryDocs": Array [
+                    "strings",
+                  ],
+                  "scope": "more strings,many strings",
+                },
+              ],
+            ],
+          },
+        },
+        "loading": false,
+        "signedIn": false,
+      },
+    ],
+  ],
+}
+`;
+
+exports[`GoogleApi component setupApi loads the google api library, loads the client:auth2 extension, gets
+    the auth instance, updates the component state, and subscribes to changes
+    in the api client's internal auth state: setState call from state change 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "client": Object {
+          "init": [MockFunction] {
+            "calls": Array [
+              Array [
+                Object {
+                  "apiKey": "apiKey",
+                  "clientId": "id",
+                  "discoveryDocs": Array [
+                    "strings",
+                  ],
+                  "scope": "more strings,many strings",
+                },
+              ],
+            ],
+          },
+        },
+        "loading": false,
+        "signedIn": false,
+      },
+    ],
+    Array [
+      Object {
+        "signedIn": true,
+      },
+    ],
+  ],
+}
+`;
+
+exports[`GoogleApiConsumer component gets the GoogleApi state as a render prop passed to the children
+  function prop 1`] = `
+Object {
+  "authorize": [Function],
+  "client": null,
+  "error": null,
+  "loading": true,
+  "signedIn": false,
+  "signout": [Function],
+}
+`;
