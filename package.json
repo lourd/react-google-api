@@ -1,6 +1,6 @@
 {
   "name": "@lourd/react-google-api",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "The Google browser API as a declarative React component",
   "repository": "lourd/react-google-api",
   "homepage": "https://github.com/lourd/react-google-api",
