@@ -49,8 +49,8 @@ interface ApiState {
 | :------------ | :------------------------------------------------------------ | :------- |
 | clientId      | `string`                                                      | yes      |
 | apiKey        | `string`                                                      | yes      |
-| discoveryDocs | \[`string`\]                                                  | yes      |
-| scopes        | \[`string`\]                                                  | yes      |
+| discoveryDocs | `[string]`                                                    | yes      |
+| scopes        | `[string]`                                                    | yes      |
 | children      | `Function(api: ApiState): PropTypes.node` or `PropTypes.node` | yes      |
 
 Get an API key and client ID from the [Google APIs console](https://console.developers.google.com/apis/credentials). Learn more about the discovery docs and scopes concepts from [Google's reference material][client docs].
