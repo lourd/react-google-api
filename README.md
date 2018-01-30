@@ -17,7 +17,7 @@ See [`@lourd/react-google-sheet`][sheets module] for an example of using the com
 ## Installation
 
 ```sh
-yarn install @lourd/react-google-api
+yarn add @lourd/react-google-api
 ```
 
 ### Browser
