@@ -1,16 +1,15 @@
 {
   "name": "@lourd/react-google-api",
   "version": "0.1.2",
-  "description": "The Google browser API as a declarative React component",
+  "description":
+    "Google's REST APIs browser client as a declarative React component",
   "repository": "lourd/react-google-api",
   "homepage": "https://github.com/lourd/react-google-api",
-  "author": "Louis DeScioli (http://descioli.design)",
+  "author": "Louis DeScioli (descioli.design)",
   "license": "MIT",
   "main": "dist/react-google-api.js",
   "module": "dist/react-google-api.es.js",
-  "files": [
-    "dist"
-  ],
+  "files": ["dist"],
   "scripts": {
     "build": "node ./scripts/build.js",
     "release": "npm run build && node ./scripts/release.js",
@@ -48,18 +47,8 @@
     "rollup-plugin-uglify": "^3.0.0",
     "webpack": "^3.10.0"
   },
-  "keywords": [
-    "google",
-    "react",
-    "sdk",
-    "api",
-    "browser",
-    "component",
-    "data"
-  ],
+  "keywords": ["google", "react", "sdk", "api", "browser", "component", "data"],
   "jest": {
-    "setupFiles": [
-      "./scripts/testSetup.js"
-    ]
+    "setupFiles": ["./scripts/testSetup.js"]
   }
 }
