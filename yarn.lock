@@ -10,9 +10,19 @@
     esutils "^2.0.2"
     js-tokens "^3.0.0"
 
+"@lourd/deferred@^0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@lourd/deferred/-/deferred-0.1.0.tgz#9d612abafdda0f9ffd0e6ad020ed6cb88063859a"
+
 "@lourd/load-script@^0.1.0":
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/@lourd/load-script/-/load-script-0.1.0.tgz#6ec8024fd5829c62e1151ba6fd39c11f73f11122"
+
+"@lourd/react-catcher@^0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@lourd/react-catcher/-/react-catcher-0.1.0.tgz#79b3e9849d1a5aecb0b2db43b8a029f34a55d671"
+  dependencies:
+    prop-types "^15.6.0"
 
 "@types/node@*":
   version "9.4.0"
@@ -721,9 +731,9 @@ babel-plugin-transform-react-jsx@^6.24.1:
     babel-plugin-syntax-jsx "^6.8.0"
     babel-runtime "^6.22.0"
 
-babel-plugin-transform-react-remove-prop-types@^0.2.11:
-  version "0.2.12"
-  resolved "https://registry.yarnpkg.com/babel-plugin-transform-react-remove-prop-types/-/babel-plugin-transform-react-remove-prop-types-0.2.12.tgz#3406696df0b8b456089f9d726d27e7e123d2f929"
+babel-plugin-transform-react-remove-prop-types@^0.4.12:
+  version "0.4.12"
+  resolved "https://registry.yarnpkg.com/babel-plugin-transform-react-remove-prop-types/-/babel-plugin-transform-react-remove-prop-types-0.4.12.tgz#a382c27c42d6580748c80caf8c3d5091edbb60b8"
 
 babel-plugin-transform-regenerator@^6.22.0:
   version "6.26.0"

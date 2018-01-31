@@ -25,7 +25,10 @@ if (BUILDING) {
 }
 
 if (BUILD_ENV === 'production') {
-  config.plugins.push('transform-react-remove-prop-types')
+  config.plugins.push([
+    'transform-react-remove-prop-types',
+    { removeImport: true },
+  ])
 }
 
 module.exports = config

@@ -1,6 +1,21 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`GoogleApi component Throws a render error when no children are given: no children render error 1`] = `[Invariant Violation: GoogleApiProvider(...): Nothing was returned from render. This usually means a return statement is missing. Or, to render nothing, return null.]`;
+exports[`GoogleApi component Throws a render error when no children are given: no children render error 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      [Invariant Violation: GoogleApiProvider(...): Nothing was returned from render. This usually means a return statement is missing. Or, to render nothing, return null.],
+      Object {
+        "componentStack": "
+    in GoogleApiProvider (created by GoogleApi)
+    in GoogleApi
+    in Catcher (created by WrapperComponent)
+    in WrapperComponent",
+      },
+    ],
+  ],
+}
+`;
 
 exports[`GoogleApi component has initial values for the api state, including the bound authorize and
   signout instance methods, and passes that state down through a context

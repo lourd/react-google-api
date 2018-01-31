@@ -1,10 +1,11 @@
 import React from 'react'
 import { mount as render } from 'enzyme'
+import loadScript from '@lourd/load-script'
+import Catcher from '@lourd/react-catcher'
 
 // importing from the public API
 import { GoogleApi, GoogleApiConsumer } from '../'
 import { GoogleApiProvider } from '../GoogleApi'
-import loadScript from '@lourd/load-script'
 
 jest.mock('@lourd/load-script')
 
@@ -13,23 +14,6 @@ const apiProps = {
   apiKey: 'apiKey',
   discoveryDocs: ['strings'],
   scopes: ['more strings', 'many strings'],
-}
-
-class Deferred {
-  constructor() {
-    this.promise = new Promise((resolve, reject) => {
-      this.resolve = resolve
-      this.reject = reject
-    })
-  }
-}
-
-class Catcher extends React.Component {
-  componentDidCatch = this.props.onCatch
-
-  render() {
-    return this.props.children
-  }
 }
 
 describe('GoogleApi component', () => {
@@ -81,14 +65,13 @@ describe('GoogleApi component', () => {
       }
     }
     const cleanup = setup()
-    const deferred = new Deferred()
+    const fn = jest.fn()
     render(
-      <Catcher onCatch={deferred.resolve}>
+      <Catcher onCatch={fn}>
         <GoogleApi {...apiProps} />
       </Catcher>,
     )
-    const error = await deferred.promise
-    expect(error).toMatchSnapshot('no children render error')
+    expect(fn).toMatchSnapshot('no children render error')
     // being certain that it's only the two react errors being logged
     expect(console.error).toHaveBeenCalledTimes(2)
     cleanup()
