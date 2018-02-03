@@ -1,6 +1,5 @@
-import React from 'react'
+import React, { createContext } from 'react'
 import PropTypes from 'prop-types'
-import { createContext } from 'react-broadcast'
 import loadScript from '@lourd/load-script'
 
 const {
