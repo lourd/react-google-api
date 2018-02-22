@@ -1,10 +1,22 @@
-const babel = require('rollup-plugin-babel')
-const commonjs = require('rollup-plugin-commonjs')
-const replace = require('rollup-plugin-replace')
-const resolve = require('rollup-plugin-node-resolve')
-const uglify = require('rollup-plugin-uglify')
+import babel from 'rollup-plugin-babel'
+import commonjs from 'rollup-plugin-commonjs'
+import replace from 'rollup-plugin-replace'
+import resolve from 'rollup-plugin-node-resolve'
+import uglify from 'rollup-plugin-uglify'
 
-const { BUILD_ENV } = process.env
+const { BUILD_ENV, BUILD_FORMAT } = process.env
+
+const babelPlugins = [
+  'transform-object-rest-spread',
+  'transform-class-properties',
+]
+
+if (BUILD_ENV === 'production') {
+  babelPlugins.push([
+    'transform-react-remove-prop-types',
+    { removeImport: true },
+  ])
+}
 
 const config = {
   input: 'modules/index.js',
@@ -14,23 +26,51 @@ const config = {
       react: 'React',
     },
   },
-  external: ['react'],
+  // by listing no external, everything is external, we just get a warning
+  // external: [],
   plugins: [
-    resolve(),
     babel({
+      babelrc: false,
+      presets: [
+        'react',
+        [
+          'env',
+          {
+            loose: true,
+            modules: false,
+            targets: {
+              chrome: '60',
+              edge: '15',
+              firefox: '57',
+              ios: '10.3',
+            },
+          },
+        ],
+      ],
+      plugins: babelPlugins,
       exclude: 'node_modules/**',
-    }),
-    replace({
-      'process.env.NODE_ENV': JSON.stringify(BUILD_ENV),
-    }),
-    commonjs({
-      include: /node_modules/,
     }),
   ],
 }
 
-if (BUILD_ENV === 'production') {
-  config.plugins.push(uglify())
+if (BUILD_FORMAT === 'umd') {
+  config.plugins.push(
+    ...[
+      resolve(),
+      commonjs({
+        include: /node_modules/,
+      }),
+      replace({
+        'process.env.NODE_ENV': JSON.stringify(BUILD_ENV),
+      }),
+    ],
+  )
+  if (BUILD_ENV === 'production') {
+    config.plugins.push(uglify())
+  }
+  // In the browser build, include our smaller dependencies
+  // so users only need to include React
+  config.external = ['react']
 }
 
-module.exports = config
+export default config
