@@ -1,3 +1,10 @@
 {
-  "presets": ["./.babelrc.js"]
+  "presets": [
+    "react",
+    ["env", { "targets": {"node": "current"}, "loose": true }]
+  ],
+  "plugins": [
+    "transform-object-rest-spread",
+    "transform-class-properties"
+  ]
 }
